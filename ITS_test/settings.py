@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Internal Apps
     'moneypipe',
+    # External Apps
     'rest_framework',
     'djmoney',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
