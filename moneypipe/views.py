@@ -7,7 +7,7 @@ from .models import MoneyUser
 from .serializers import MoneyUserSerializer, MoneyPipeSerializer
 
 
-class ListMoneyUserAPIView(generics.ListAPIView):
+class ListMoneyUserAPIView(generics.ListCreateAPIView):
     queryset = MoneyUser.objects.all()
     serializer_class = MoneyUserSerializer
 
