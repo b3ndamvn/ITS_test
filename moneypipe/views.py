@@ -23,6 +23,9 @@ class MoneyPipeAPIView(generics.GenericAPIView):
             return Response({"Error": "Ошибка! Неверный формат ввода суммы перевода"}, status=400)
         if not MoneyPipeSerializer(data=request.data).is_valid(raise_exception=False):
             return Response({"Error": "Ошибка! Проверьте правильность введенных данных"}, status=400)
+        for dest_user in request.data['destination']:
+            if not MoneyUser.objects.filter(INN=dest_user).first():
+                return Response({"Error": "Ошибка! Пользователя с указанным ИНН нет"}, status=400)
 
         user = MoneyUser.objects.filter(pk=request.data['source']).first()
         dest_users = MoneyUser.objects.filter(INN__in=request.data['destination'])
